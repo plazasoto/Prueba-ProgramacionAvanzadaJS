@@ -88,6 +88,7 @@ const crearAnimal = (nombre, edad, img, comentarios, sonido) =>{
     }
 }
 
+// Asociando función a botón
 const boton = document.getElementById("btnRegistrar");
 boton.addEventListener("click", (event) => {
 
@@ -112,6 +113,12 @@ boton.addEventListener("click", (event) => {
                 sonidoAnimal = element.sonido;
                 animal = crearAnimal(nombreAnimal, edadAnimal, imagenAnimal, comentarioAnimal, sonidoAnimal);
                 //console.log(animal);
+                //animal.gruñir();
+                //--------------------------------
+                /*document.getElementById("Animales").innerHTML =
+                `<img src="./assets/imgs/${animal.img}">`;*/
+                manipularDOM.tabularAnimal(animal);
+                //--------------------------------
             }
         });
     }); 
@@ -123,3 +130,32 @@ const request = async (url) => {
     const response = await results.json();
     return response;
 }
+
+// DOM
+const manipularDOM = (()=>{
+    const animalesEnInvestigacion = document.getElementById("Animales");
+    return {
+        tabularAnimal: (animal)=>{
+            let card = document.createElement("div");
+            card.setAttribute("class", "card col-3");
+            //card.setAttribute("style", "width: 18rem;");
+            
+            let imagen = document.createElement("img");
+            imagen.setAttribute('src', `./assets/imgs/${animal.img}`);
+            imagen.setAttribute('class', 'card-img-top');
+
+            let imgAudio = document.createElement("img");
+            imgAudio.setAttribute('src', './assets/imgs/audio.svg');
+            imgAudio.setAttribute('class', 'card-img-bottom');
+
+            card.appendChild(imagen);
+            card.appendChild(imgAudio);
+
+            animalesEnInvestigacion.appendChild(card);
+            
+           //ajustar detalles de estilo luego...
+           
+
+        }
+    }
+})();
