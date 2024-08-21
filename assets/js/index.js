@@ -1,5 +1,6 @@
 //console.log("ᓀ‸ᓂ");
-
+import { Animal, Leon, Lobo, Oso, Serpiente, Aguila, crearAnimal } from "./animales.js";
+/*
 class Animal{
     constructor(nombre, edad, img, comentarios, sonido){
         this._nombre = nombre;
@@ -87,6 +88,7 @@ const crearAnimal = (nombre, edad, img, comentarios, sonido) =>{
             return new Animal(nombre, edad, img, comentarios, sonido);
     }
 }
+*/
 
 // Asociando función a botón
 const boton = document.getElementById("btnRegistrar");
