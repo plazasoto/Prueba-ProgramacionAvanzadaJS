@@ -22,13 +22,13 @@ export class Animal{
     get comentarios(){
         return this._comentarios;
     }
+
+    get sonido(){
+        return this._sonido;
+    }
     //Setters
     set comentarios(comentario){
         this._comentarios = comentario;
-    }
-
-    set sonido(sonido){
-        this._sonido = sonido;
     }
 }
 
@@ -37,7 +37,9 @@ export class Leon extends Animal{
         super(nombre, edad, img, comentarios, sonido);
     }
 
-    rugir(){console.log("Hola, soy " + this._nombre)}
+    rugir(){
+        return this.sonido;
+    }
 }
 
 export class Lobo extends Animal{
@@ -45,7 +47,9 @@ export class Lobo extends Animal{
         super(nombre, edad, img, comentarios, sonido);
     }
 
-    aullar(){console.log("Hola, soy " + this._nombre)}
+    aullar(){
+        return this.sonido;
+    }
 }
 
 export class Oso extends Animal{
@@ -53,7 +57,9 @@ export class Oso extends Animal{
         super(nombre, edad, img, comentarios, sonido);
     }
 
-    gruñir(){console.log("Hola, soy " + this._nombre)}
+    gruñir(){
+        return this.sonido;
+    }
 }
 
 export class Serpiente extends Animal{
@@ -61,7 +67,9 @@ export class Serpiente extends Animal{
         super(nombre, edad, img, comentarios, sonido);
     }
 
-    sisear(){console.log("Hola, soy " + this._nombre)}
+    sisear(){
+        return this.sonido;
+    }
 }
 
 export class Aguila extends Animal{
@@ -69,7 +77,9 @@ export class Aguila extends Animal{
         super(nombre, edad, img, comentarios, sonido);
     }
 
-    chillar(){console.log("Hola, soy " + this._nombre)}
+    chillar(){
+        return this.sonido;
+    }
 }
 
 // Función para crear instancia correspondiente a nombre de animal

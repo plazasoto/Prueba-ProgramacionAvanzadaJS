@@ -1,4 +1,3 @@
-//console.log("ᓀ‸ᓂ");
 import { Animal, Leon, Lobo, Oso, Serpiente, Aguila, crearAnimal } from "./animales.js";
 
 const RUTA = "./animales.json";//donde consultar por datos de animales
@@ -93,7 +92,18 @@ const manipularDOM = (()=>{
                 `;
                 
             });
+            //Para el audio
+            imgAudio.addEventListener('click',(event)=>{
+                let contAudio = document.getElementById("contenedorAudio");
+                contAudio.innerHTML = `
+                <audio autoplay>
+                    <source src="./assets/sounds/${animal.sonido}" type="audio/mp3">
+                </audio> 
+                `;
+                
+            });
 
+            // Agregando card del animal a la tabla visible
             animalesEnInvestigacion.appendChild(card);
         }
     }
@@ -105,15 +115,3 @@ const resetarFormulario = ()=>{
     document.getElementById("edad").value = "Seleccione un rango de años";
     document.getElementById("comentarios").value = "";
 }
-
-
-/******************** */
-// Probando
-/* manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
-manipularDOM.tabularAnimal(crearAnimal("Leon","x","Leon.png","z","no"));
-manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
-manipularDOM.tabularAnimal(crearAnimal("Oso","x","Oso.jpg","z","no"));
-manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
-manipularDOM.tabularAnimal(crearAnimal("Serpiente","x","Serpiente.jpg","z","no"));
-manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
-manipularDOM.tabularAnimal(crearAnimal("Aguila","x","Aguila.png","z","no")); */

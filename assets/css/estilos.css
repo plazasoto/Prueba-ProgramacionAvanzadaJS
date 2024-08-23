@@ -65,3 +65,6 @@ body {
 .card-img-bottom{
   height: 50px;
 }
+.card-img-bottom:hover{
+  cursor: pointer;
+}
