@@ -20,6 +20,20 @@ boton.addEventListener("click", (event) => {
     let imagenAnimal;//se obtendrá de json
     let comentarioAnimal = document.getElementById("comentarios").value;
     let sonidoAnimal;//se obtendrá de json
+
+    // Validando asignación de los 3 datos
+    if (nombreAnimal == "Seleccione un animal"){
+        alert("Debe seleccionar el nombre del animal.");
+        return;
+    }
+    if (edadAnimal == "Seleccione un rango de años"){
+        alert("Debe seleccionar el rango de años del animal.");
+        return;
+    }
+    if (comentarioAnimal == ""){
+        alert("Debe ingresar un comentario.");
+        return;
+    }
     
     // Instancia
     let animal;//se inicializa luego de obtener datos del json
@@ -37,6 +51,8 @@ boton.addEventListener("click", (event) => {
                 animal = crearAnimal(nombreAnimal, edadAnimal, imagenAnimal, comentarioAnimal, sonidoAnimal);
                 // Agregando el animal a la tabla
                 manipularDOM.tabularAnimal(animal);
+                // Devolver formulario a estado inicial
+                resetarFormulario();
             }
         });
     }); 
@@ -83,6 +99,14 @@ const manipularDOM = (()=>{
     }
 })();
 
+// Setear valores iniciales del formulario
+const resetarFormulario = ()=>{
+    document.getElementById("animal").value = "Seleccione un animal";
+    document.getElementById("edad").value = "Seleccione un rango de años";
+    document.getElementById("comentarios").value = "";
+}
+
+
 /******************** */
 // Probando
 /* manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
@@ -93,8 +117,3 @@ manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
 manipularDOM.tabularAnimal(crearAnimal("Serpiente","x","Serpiente.jpg","z","no"));
 manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
 manipularDOM.tabularAnimal(crearAnimal("Aguila","x","Aguila.png","z","no")); */
-
-//para mostrar animal al seleccionarlo ... ?
-menuAnimal.addEventListener('click',(event)=>{
-    console.log(menuAnimal.value);
-});
