@@ -1,6 +1,15 @@
 //console.log("ᓀ‸ᓂ");
 import { Animal, Leon, Lobo, Oso, Serpiente, Aguila, crearAnimal } from "./animales.js";
 
+const RUTA = "./animales.json";//donde consultar por datos de animales
+
+// Consulta asincrónica
+const request = async (url) => {
+    const results = await fetch(url);
+    const response = await results.json();
+    return response;
+}
+
 // Asociando función a botón
 const boton = document.getElementById("btnRegistrar");
 boton.addEventListener("click", (event) => {
@@ -16,7 +25,7 @@ boton.addEventListener("click", (event) => {
     let animal;//se inicializa luego de obtener datos del json
     
     // Consulta a animales.jason
-    let requestAnimales = request("./animales.json");
+    let requestAnimales = request(RUTA);
 
     requestAnimales.then(async (val)=>{       
         await val.animales.forEach(element => {
@@ -24,25 +33,16 @@ boton.addEventListener("click", (event) => {
             if(element.name == nombreAnimal){
                 imagenAnimal = element.imagen;
                 sonidoAnimal = element.sonido;
+                // Creando instancia de Animal
                 animal = crearAnimal(nombreAnimal, edadAnimal, imagenAnimal, comentarioAnimal, sonidoAnimal);
-                //console.log(animal);
-                //animal.gruñir();
-                //--------------------------------
-                /*document.getElementById("Animales").innerHTML =
-                `<img src="./assets/imgs/${animal.img}">`;*/
+                // Agregando el animal a la tabla
                 manipularDOM.tabularAnimal(animal);
-                //--------------------------------
             }
         });
     }); 
 })
 
-// Consulta asincrónica
-const request = async (url) => {
-    const results = await fetch(url);
-    const response = await results.json();
-    return response;
-}
+
 
 // DOM
 const manipularDOM = (()=>{
@@ -50,8 +50,7 @@ const manipularDOM = (()=>{
     return {
         tabularAnimal: (animal)=>{
             let card = document.createElement("div");
-            card.setAttribute("class", "card col-3");
-            //card.setAttribute("style", "width: 18rem;");
+            card.setAttribute("class", "card col-3 bg-dark");
             
             let imagen = document.createElement("img");
             imagen.setAttribute('src', `./assets/imgs/${animal.img}`);
@@ -64,50 +63,36 @@ const manipularDOM = (()=>{
             card.appendChild(imagen);
             card.appendChild(imgAudio);
 
-
-            //Para que al hacer click en la card se muestre el modal
-            card.setAttribute("data-toggle", "modal");
-            card.setAttribute("data-target", "#exampleModal");
+            //Para que al hacer click en la imagen se muestre el modal
+            imagen.setAttribute("data-toggle", "modal");
+            imagen.setAttribute("data-target", "#exampleModal");
             //Pasar datos de este animal al modal
-            card.addEventListener('click',(event)=>{
+            imagen.addEventListener('click',(event)=>{
                 let modal = document.querySelector(".modal-body");
                 modal.innerHTML = `
-                <img src="./assets/imgs/${animal.img}" alt="Imagen de ${animal.nombre}" id="modal_imagen">
+                <img src="./assets/imgs/${animal.img}" alt="Imagen de ${animal.nombre}" class="w-100">
                 <h4>${animal.edad}</h4>
                 <h4>Comentarios</h4>
                 <p>${animal.comentarios}</p>
                 `;
-                //modal.appendChild(imagen);
                 
             });
 
             animalesEnInvestigacion.appendChild(card);
-            
-           //ajustar detalles de estilo luego...
-           
-
         }
     }
 })();
 
 /******************** */
 // Probando
-/*
-
-let animalesRegistrados = [];
-let menuAnimal = document.getElementById("animal");
-(()=>{
-    console.log("Testing\nᓀ‸ᓂ");
-
-    let animalDePrueba1 = new Leon("León", "1 - 2 años", "Leon.png", "No existe.", "Aullido.mp3");
-    console.log(animalDePrueba1);
-
-    manipularDOM.tabularAnimal(animalDePrueba1);
-
-    animalesRegistrados.push(animalDePrueba1);
-    console.log(animalesRegistrados);
-})();
-*/
+/* manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
+manipularDOM.tabularAnimal(crearAnimal("Leon","x","Leon.png","z","no"));
+manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
+manipularDOM.tabularAnimal(crearAnimal("Oso","x","Oso.jpg","z","no"));
+manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
+manipularDOM.tabularAnimal(crearAnimal("Serpiente","x","Serpiente.jpg","z","no"));
+manipularDOM.tabularAnimal(crearAnimal("Lobo","x","Lobo.jpg","z","no"));
+manipularDOM.tabularAnimal(crearAnimal("Aguila","x","Aguila.png","z","no")); */
 
 //para mostrar animal al seleccionarlo ... ?
 menuAnimal.addEventListener('click',(event)=>{

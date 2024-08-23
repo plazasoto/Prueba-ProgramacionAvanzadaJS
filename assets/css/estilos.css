@@ -49,11 +49,19 @@ body {
 }
 
 
-/**/
-#modal_imagen{
-  width: 100%;
-}
+/* Extras */
 .modal-body{
   text-align: center;
   color: beige;
+}
+.card-img-top{
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+} 
+.card-img-top:hover{
+  cursor: pointer;
+}
+.card-img-bottom{
+  height: 50px;
 }
