@@ -1,94 +1,5 @@
 //console.log("ᓀ‸ᓂ");
 import { Animal, Leon, Lobo, Oso, Serpiente, Aguila, crearAnimal } from "./animales.js";
-/*
-class Animal{
-    constructor(nombre, edad, img, comentarios, sonido){
-        this._nombre = nombre;
-        this._edad = edad;
-        this._img = img;
-        this._comentarios = comentarios;
-        this._sonido = sonido;
-    }
-    //Getters
-    get nombre(){
-        return this._nombre;
-    }
-    
-    get edad(){
-        return this._edad;
-    }
-    
-    get img(){
-        return this._img;
-    }
-    //Setters
-    set comentarios(comentario){
-        this._comentarios = comentario;
-    }
-
-    set sonido(sonido){
-        this._sonido = sonido;
-    }
-}
-
-class Leon extends Animal{
-    constructor(nombre, edad, img, comentarios, sonido){
-        super(nombre, edad, img, comentarios, sonido);
-    }
-
-    rugir(){console.log("Hola, soy " + this._nombre)}
-}
-
-class Lobo extends Animal{
-    constructor(nombre, edad, img, comentarios, sonido){
-        super(nombre, edad, img, comentarios, sonido);
-    }
-
-    aullar(){console.log("Hola, soy " + this._nombre)}
-}
-
-class Oso extends Animal{
-    constructor(nombre, edad, img, comentarios, sonido){
-        super(nombre, edad, img, comentarios, sonido);
-    }
-
-    gruñir(){console.log("Hola, soy " + this._nombre)}
-}
-
-class Serpiente extends Animal{
-    constructor(nombre, edad, img, comentarios, sonido){
-        super(nombre, edad, img, comentarios, sonido);
-    }
-
-    sisear(){console.log("Hola, soy " + this._nombre)}
-}
-
-class Aguila extends Animal{
-    constructor(nombre, edad, img, comentarios, sonido){
-        super(nombre, edad, img, comentarios, sonido);
-    }
-
-    chillar(){console.log("Hola, soy " + this._nombre)}
-}
-
-// Función para crear instancia correspondiente a nombre de animal
-const crearAnimal = (nombre, edad, img, comentarios, sonido) =>{
-    switch(nombre){
-        case "Leon":
-            return new Leon(nombre, edad, img, comentarios, sonido);
-        case "Lobo":
-            return new Lobo(nombre, edad, img, comentarios, sonido);
-        case "Oso":
-            return new Oso(nombre, edad, img, comentarios, sonido);
-        case "Serpiente":
-            return new Serpiente(nombre, edad, img, comentarios, sonido);
-        case "Aguila":
-            return new Aguila(nombre, edad, img, comentarios, sonido);
-        default:
-            return new Animal(nombre, edad, img, comentarios, sonido);
-    }
-}
-*/
 
 // Asociando función a botón
 const boton = document.getElementById("btnRegistrar");
@@ -153,6 +64,23 @@ const manipularDOM = (()=>{
             card.appendChild(imagen);
             card.appendChild(imgAudio);
 
+
+            //Para que al hacer click en la card se muestre el modal
+            card.setAttribute("data-toggle", "modal");
+            card.setAttribute("data-target", "#exampleModal");
+            //Pasar datos de este animal al modal
+            card.addEventListener('click',(event)=>{
+                let modal = document.querySelector(".modal-body");
+                modal.innerHTML = `
+                <img src="./assets/imgs/${animal.img}" alt="Imagen de ${animal.nombre}" id="modal_imagen">
+                <h4>${animal.edad}</h4>
+                <h4>Comentarios</h4>
+                <p>${animal.comentarios}</p>
+                `;
+                //modal.appendChild(imagen);
+                
+            });
+
             animalesEnInvestigacion.appendChild(card);
             
            //ajustar detalles de estilo luego...
@@ -161,3 +89,27 @@ const manipularDOM = (()=>{
         }
     }
 })();
+
+/******************** */
+// Probando
+/*
+
+let animalesRegistrados = [];
+let menuAnimal = document.getElementById("animal");
+(()=>{
+    console.log("Testing\nᓀ‸ᓂ");
+
+    let animalDePrueba1 = new Leon("León", "1 - 2 años", "Leon.png", "No existe.", "Aullido.mp3");
+    console.log(animalDePrueba1);
+
+    manipularDOM.tabularAnimal(animalDePrueba1);
+
+    animalesRegistrados.push(animalDePrueba1);
+    console.log(animalesRegistrados);
+})();
+*/
+
+//para mostrar animal al seleccionarlo ... ?
+menuAnimal.addEventListener('click',(event)=>{
+    console.log(menuAnimal.value);
+});

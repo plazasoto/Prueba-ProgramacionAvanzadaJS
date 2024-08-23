@@ -48,3 +48,12 @@ body {
     max-width: 85% !important;
 }
 
+
+/**/
+#modal_imagen{
+  width: 100%;
+}
+.modal-body{
+  text-align: center;
+  color: beige;
+}

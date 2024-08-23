@@ -18,6 +18,10 @@ export class Animal{
     get img(){
         return this._img;
     }
+
+    get comentarios(){
+        return this._comentarios;
+    }
     //Setters
     set comentarios(comentario){
         this._comentarios = comentario;
